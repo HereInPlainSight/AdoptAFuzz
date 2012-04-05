@@ -1,7 +1,5 @@
 package com.etherelements.hereinplainsight.AdoptAFuzz;
 
-import java.util.Random;
-
 import net.milkbowl.vault.economy.Economy;
 
 import org.bukkit.plugin.Plugin;
@@ -23,11 +21,11 @@ public class EconHandler {
 				economy = economyProvider.getProvider();
 				if (economy != null) {
 					handler = EconomyHandler.VAULT;
-					System.out.println("[" + plugin.getName() + "] Economy system provided by: Vault v" + pVault.getDescription().getVersion() + ", " + economy.getName() + ", and the letter " + new String("ABCDEFGHIJKLMNOPQRSTUVWXYZ").charAt(new Random().nextInt(24)) + ".");
+					plugin.sendToConsole("Economy system provided by: Vault v" + pVault.getDescription().getVersion() + " and " + economy.getName() + ".");
 					return;
 				}
 			}
-			System.out.println("[" + plugin.getName() + "] No economy plugin detected.");
+			plugin.sendToConsole("No economy plugin detected.");
 		}
 		handler = EconomyHandler.NONE;
 	}
