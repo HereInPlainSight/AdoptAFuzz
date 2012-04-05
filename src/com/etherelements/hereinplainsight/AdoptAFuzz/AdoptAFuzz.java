@@ -66,9 +66,8 @@ public class AdoptAFuzz extends JavaPlugin implements Listener{
 				Tameable untamed = (Tameable) clicked;
 				String type = clicked.getType().getName().toLowerCase().matches("ozelot") ? "ocelot" : "wolf";
 				Player player = event.getPlayer();
-				if (untamed.getOwner() == player && player.hasPermission(this.getName() + "." + type + ".unclaim")){
-					System.out.println(player.getName() + "has: " + this.getName() + "." + type + ".unclaim (" + player.hasPermission(this.getName() + "." + type + ".unclaim") + ")");
-					if ((player.hasPermission(this.getName() + ".free." + type) || EconHandler.hasEnough(player.getName(), getConfig().getDouble("costToUntame" + (type.matches("ocelot") ? "Cats" : "Dogs"))))){
+				if (untamed.getOwner() == player && player.hasPermission("adoptafuzz." + type + ".unclaim")){
+					if ((player.hasPermission("adoptafuzz.free." + type) || EconHandler.hasEnough(player.getName(), getConfig().getDouble("costToUntame" + (type.matches("ocelot") ? "Cats" : "Dogs"))))){
 						if (!player.hasPermission(this.getName() + ".free." + type))
 							if (EconHandler.charge(player.getName(), getConfig().getDouble("costToUntame" + (type.matches("ocelot") ? "Cats" : "Dogs"))))
 								player.sendMessage("You have been charged " + getConfig().getDouble("costToUntame" + (type.matches("ocelot") ? "Cats" : "Dogs")) + " for unclaiming a pet.");
