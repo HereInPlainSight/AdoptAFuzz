@@ -1,0 +1,7 @@
+enableEconomy: false
+kittensSpawnUntamed: false
+puppiesSpawnUntamed: false
+unclaimCatsWith: 350
+unclaimDogsWith: 287
+costToUntameCats: 0
+costToUntameDogs: 0

@@ -1,0 +1,33 @@
+name: AdoptAFuzz
+version: 0.1
+main: com.etherelements.hereinplainsight.AdoptAFuzz.AdoptAFuzz
+author: HereInPlainSight
+softdepend: [Vault]
+license: Beerware (But with a milkshake!)
+description: >
+             Control the ownership of pets naturally without commands.
+
+permissions:
+    adoptafuzz.*:
+        description: Gives access to all things adoptafuzz.
+        default: op
+        children:
+            adoptafuzz.free.*: true
+            adoptafuzz.ocelot.*: true
+            adoptafuzz.wolf.*: true
+    adoptafuzz.free.*:
+        description: Gives free unclaims if economy is enabled. Youth names are for unbound bred-in-capitivities.
+        default: false
+        children:
+            adoptafuzz.free.ocelot: false
+            adoptafuzz.free.wolf: false
+    adoptafuzz.ocelot.*:
+        description: Gives access to all ocelot permissions.
+        default: false
+        children:
+            adoptafuzz.ocelot.unclaim: false
+    adoptafuzz.wolf.*:
+        description: Gives access to all wolf permissions.
+        default: false
+        children:
+            adoptafuzz.wolf.unclaim: false
