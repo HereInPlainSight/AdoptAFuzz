@@ -1,6 +1,9 @@
 package com.etherelements.hereinplainsight.AdoptAFuzz;
 
+import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -31,6 +34,27 @@ public class AdoptAFuzz extends JavaPlugin implements Listener{
 	public void onDisable(){
 	}
 
+	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
+		boolean player = sender instanceof Player;
+		if (cmd.getName().compareToIgnoreCase("adoptafuzz") == 0 && args.length == 0){
+			if ((player ? !sender.hasPermission("adoptafuzz.commands.reload") : false)){
+				sender.sendMessage(ChatColor.RED + "You do not have permission to do that.");
+				return true;
+			}
+			this.reloadConfig();
+			EconHandler.canHazEconomy(this);
+			if (player){
+				sender.sendMessage("Configuration reloaded.");
+				this.getServer().getConsoleSender().sendMessage("[" + this.getName() + "] Configuration reloaded by " + sender.getName() + ".");
+			}else{
+				sender.sendMessage("[" + this.getName() + "] Configuration reloaded.");
+			}
+		}else{
+			sender.sendMessage("Arguments not supported.");
+		}
+		return true;
+	}
+
 	@EventHandler
 	public void onCreatureSpawnEvent(CreatureSpawnEvent event){
 		if (!event.isCancelled() && event.getSpawnReason() == CreatureSpawnEvent.SpawnReason.BREEDING){
@@ -40,7 +64,7 @@ public class AdoptAFuzz extends JavaPlugin implements Listener{
 			Tameable babee = (Tameable) event.getEntity();
 			if (babee.isTamed()){
 				babee.setTamed(false);
-				babee.setOwner(null);
+//				babee.setOwner(null);
 			}
 		}
 	}
@@ -64,16 +88,16 @@ public class AdoptAFuzz extends JavaPlugin implements Listener{
 			Entity clicked = event.getRightClicked();
 			if ((clicked.getType() == EntityType.OCELOT && item == getConfig().getInt("unclaimCatsWith")) || (clicked.getType() == EntityType.WOLF && item == getConfig().getInt("unclaimDogsWith"))){
 				Tameable untamed = (Tameable) clicked;
-				String type = clicked.getType().getName().toLowerCase().matches("ozelot") ? "ocelot" : "wolf";
+				String type = (clicked.getType().getName().toLowerCase().matches("ozelot") ? "ocelot" : "wolf");
 				Player player = event.getPlayer();
 				if (untamed.getOwner() == player && player.hasPermission("adoptafuzz." + type + ".unclaim")){
 					if ((player.hasPermission("adoptafuzz.free." + type) || EconHandler.hasEnough(player.getName(), getConfig().getDouble("costToUntame" + (type.matches("ocelot") ? "Cats" : "Dogs"))))){
-						if (!player.hasPermission(this.getName() + ".free." + type))
+						if (!player.hasPermission("adoptafuzz.free." + type))
 							if (EconHandler.charge(player.getName(), getConfig().getDouble("costToUntame" + (type.matches("ocelot") ? "Cats" : "Dogs"))))
-								player.sendMessage("You have been charged " + getConfig().getDouble("costToUntame" + (type.matches("ocelot") ? "Cats" : "Dogs")) + " for unclaiming a pet.");
+								player.sendMessage(ChatColor.GREEN + "You have been charged " + getConfig().getDouble("costToUntame" + (type.matches("ocelot") ? "Cats" : "Dogs")) + " for unclaiming a pet.");
 						event.setCancelled(true);
 						untamed.setTamed(false);
-						untamed.setOwner(null);
+//						untamed.setOwner(null);
 						if (player.getGameMode() != GameMode.CREATIVE)
 							event.getPlayer().getItemInHand().setAmount(event.getPlayer().getItemInHand().getAmount()-1);
 					}

@@ -6,15 +6,25 @@ softdepend: [Vault]
 license: Beerware (But with a milkshake!)
 description: >
              Control the ownership of pets naturally without commands.
+commands:
+  adoptafuzz:
+    description: Reloads the AdoptAFuzz configuration file.
+    usage: /command
 
 permissions:
     adoptafuzz.*:
         description: Gives access to all things adoptafuzz.
         default: op
         children:
+            adoptafuzz.commands.*: true
             adoptafuzz.free.*: true
             adoptafuzz.ocelot.*: true
             adoptafuzz.wolf.*: true
+    adoptafuzz.command.*:
+        description: Gives access to adoptafuzz commands.
+        default: op
+        children:
+            adoptafuzz.commands.reload: true
     adoptafuzz.free.*:
         description: Gives free unclaims if economy is enabled. Youth names are for unbound bred-in-capitivities.
         default: false
