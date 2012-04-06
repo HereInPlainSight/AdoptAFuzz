@@ -107,7 +107,6 @@ public class AdoptionListener implements Listener{
 								player.sendMessage(ChatColor.GREEN + "You have been charged " + cost + " for unclaiming a " + (type.matches("ocelots") ? "cat" : "dog") + ".");
 						event.setCancelled(true);
 						untamed.setTamed(false);
-						untamed.setOwner(null);
 						if (player.getGameMode() != GameMode.CREATIVE && !player.hasPermission("adoptafuzz.free.item." + type))
 							event.getPlayer().getItemInHand().setAmount(event.getPlayer().getItemInHand().getAmount()-1);
 					}
