@@ -1,5 +1,5 @@
 name: AdoptAFuzz
-version: 0.1
+version: 0.2
 main: com.etherelements.hereinplainsight.AdoptAFuzz.AdoptAFuzz
 author: HereInPlainSight
 softdepend: [Vault]
@@ -18,26 +18,57 @@ permissions:
         children:
             adoptafuzz.commands.*: true
             adoptafuzz.free.*: true
-            adoptafuzz.ocelot.*: true
-            adoptafuzz.wolf.*: true
+            adoptafuzz.ocelots.*: true
+            adoptafuzz.wolves.*: true
     adoptafuzz.command.*:
         description: Gives access to adoptafuzz commands.
-        default: op
-        children:
-            adoptafuzz.commands.reload: true
-    adoptafuzz.free.*:
-        description: Gives free unclaims if economy is enabled. Youth names are for unbound bred-in-capitivities.
         default: false
         children:
-            adoptafuzz.free.ocelot: false
-            adoptafuzz.free.wolf: false
-    adoptafuzz.ocelot.*:
+            adoptafuzz.commands.reload: false
+    adoptafuzz.ocelots.*:
         description: Gives access to all ocelot permissions.
         default: false
         children:
-            adoptafuzz.ocelot.unclaim: false
-    adoptafuzz.wolf.*:
+            adoptafuzz.ocelots.unclaim: false
+    adoptafuzz.wolves.*:
         description: Gives access to all wolf permissions.
         default: false
         children:
-            adoptafuzz.wolf.unclaim: false
+            adoptafuzz.wolves.unclaim: false
+    adoptafuzz.free.*:
+        description: Gives free unclaims.
+        default: false
+        children:
+            adoptafuzz.free.economy.*: false
+            adoptafuzz.free.item.*: false
+    adoptafuzz.free.economy.*:
+        description: Gives free everything for economy users.
+        default: false
+        children:
+            adoptafuzz.free.economy.adopt.*: false
+            adoptafuzz.free.economy.tame.*: false
+            adoptafuzz.free.economy.unclaim.*: false
+    adoptafuzz.free.economy.adopt.*:
+        description: Gives free adoptions for economy users.
+        default: false
+        children:
+            adoptafuzz.free.economy.adopt.ocelots: false
+            adoptafuzz.free.economy.adopt.wolves: false
+    adoptafuzz.free.economy.tame.*:
+        description: Gives free taming (of wild, never-before-tamed animals) for economy users.
+        default: false
+        children:
+            adoptafuzz.free.economy.tame.ocelots: false
+            adoptafuzz.free.economy.tame.wolves: false
+    adoptafuzz.free.economy.unclaim.*:
+        description: Gives free unclaims to economy users.
+        default: false
+        children:
+            adoptafuzz.free.economy.unclaim.ocelots: false
+            adoptafuzz.free.economy.unclaim.wolves: false
+    adoptafuzz.free.item.*:
+        description: Gives unclaims without consuming the item.
+        default: false
+        children:
+            adoptafuzz.free.item.ocelots: false
+            adoptafuzz.free.item.wolves: false

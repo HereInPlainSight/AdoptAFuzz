@@ -1,7 +1,30 @@
+##
+# Global Configurations.
+
+untamedSpawns:
+    kittens: false
+    puppies: false
+unclaimWith:
+    cats: 350
+    dogs: 287
+
+##
+# Economy section.
+
 enableEconomy: false
-kittensSpawnUntamed: false
-puppiesSpawnUntamed: false
-unclaimCatsWith: 350
-unclaimDogsWith: 287
-costToUntameCats: 0
-costToUntameDogs: 0
+costs:
+    ##
+    # Cost to unclaim a pet the user owns.
+    unclaim:
+        cats: 0
+        dogs: 0
+    ##
+    # Cost to adopt a previously owned pet.
+    adopt:
+        ocelots: 0
+        wolves: 0
+    ##
+    # Cost to tame an animal which has never been claimed before.
+    tame:
+        ocelots: 0
+        wolves: 0

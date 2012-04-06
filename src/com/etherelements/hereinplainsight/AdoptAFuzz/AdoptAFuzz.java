@@ -16,10 +16,11 @@ public class AdoptAFuzz extends JavaPlugin implements Listener{
 
 		config.options().copyDefaults(true);
 		saveConfig();
+		AdoptionListener.refreshConfig(this);
 		EconHandler.canHazEconomy(this);
 
 		PluginManager pm = getServer().getPluginManager();
-		pm.registerEvents(new AdoptionListener(this), this);
+		pm.registerEvents(new AdoptionListener(), this);
 	}
 
 	public void onDisable(){
@@ -33,6 +34,7 @@ public class AdoptAFuzz extends JavaPlugin implements Listener{
 				return true;
 			}
 			this.reloadConfig();
+			AdoptionListener.refreshConfig(this);
 			EconHandler.canHazEconomy(this);
 			if (player){
 				sender.sendMessage("Configuration reloaded.");

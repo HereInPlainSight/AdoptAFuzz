@@ -1,0 +1,57 @@
+AdoptAFuzz is a Bukkit plugin designed to allow flexibility in ownership of pets without requiring commands.  At the time of this writing the only command is to reload the plugin's config file with '/adoptafuzz'.
+
+AdoptAFuzz allows customization of economy costs, item costs, along with whether or not all pets that breed's offspring are born wild and untamed, without ownership.
+
+
+Permission nodes (with full .* support):
+
+adoptafuzz.commands.reload
+
+adoptafuzz.ocelots.unclaim
+adoptafuzz.wolves.unclaim
+
+adoptafuzz.free.item.ocelots
+adoptafuzz.free.item.wolves
+
+adoptafuzz.free.economy.adopt.ocelots
+adoptafuzz.free.economy.adopt.wolves
+
+adoptafuzz.free.economy.tame.ocelots
+adoptafuzz.free.economy.tame.wolves
+
+adoptafuzz.free.economy.unclaim.ocelots
+adoptafuzz.free.economy.unclaim.wolves
+
+
+Configuration file as it should be:
+##
+# Global Configurations.
+
+untamedSpawns:
+    kittens: false
+    puppies: false
+unclaimWith:
+    cats: 350
+    dogs: 287
+
+##
+# Economy section.
+
+enableEconomy: false
+costs:
+    ##
+    # Cost to unclaim a pet the user owns.
+    unclaim:
+        cats: 0
+        dogs: 0
+    ##
+    # Cost to adopt a previously owned pet.
+    adopt:
+        ocelots: 0
+        wolves: 0
+    ##
+    # Cost to tame an animal which has never been claimed before.
+    tame:
+        ocelots: 0
+        wolves: 0
+
