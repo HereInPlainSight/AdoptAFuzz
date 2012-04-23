@@ -1,5 +1,5 @@
 name: AdoptAFuzz
-version: 0.2
+version: 0.2.1
 main: com.etherelements.hereinplainsight.AdoptAFuzz.AdoptAFuzz
 author: HereInPlainSight
 softdepend: [Vault]
@@ -16,10 +16,16 @@ permissions:
         description: Gives access to all things adoptafuzz.
         default: op
         children:
+            adoptafuzz.admin.*: true
             adoptafuzz.commands.*: true
             adoptafuzz.free.*: true
             adoptafuzz.ocelots.*: true
             adoptafuzz.wolves.*: true
+    adoptafuzz.admin.*:
+        description: Allows a player to untame ANY pet if they have the appropriate subpermission.
+        default: op
+            adoptafuzz.admin.ocelots: true
+            adoptafuzz.admin.wolves: true
     adoptafuzz.command.*:
         description: Gives access to adoptafuzz commands.
         default: false

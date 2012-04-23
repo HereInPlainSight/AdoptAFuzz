@@ -2,6 +2,7 @@ package com.etherelements.hereinplainsight.AdoptAFuzz;
 
 import net.milkbowl.vault.economy.Economy;
 
+import org.bukkit.OfflinePlayer;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredServiceProvider;
 
@@ -40,15 +41,26 @@ public class EconHandler {
 	}
 
 	public static boolean charge(String player, double amount){
-		if (handler == EconomyHandler.VAULT) {
-			if (!hasEnough(player, amount)) {
+		if (handler == EconomyHandler.VAULT){
+			if (!hasEnough(player, amount)){
 				return false;
 			}else{
-				if (economy.isEnabled()) {
+				if (economy.isEnabled()){
 					economy.withdrawPlayer(player, amount);
 				}
 			} 
 		}
 		return true;
+	}
+	
+	public static boolean payout(String player, double amount){
+		if (handler == EconomyHandler.VAULT)
+			if (economy.isEnabled())
+				economy.depositPlayer(player, amount);
+		return true;
+	}
+	
+	public static boolean payout(OfflinePlayer player, double amount){
+		return payout(player.getName(), amount);
 	}
 }

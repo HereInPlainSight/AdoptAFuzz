@@ -1,12 +1,20 @@
 ##
 # Global Configurations.
 
-untamedSpawns:
-    kittens: false
-    puppies: false
+spawns:
+    kittens:
+        untamed: false
+#        dontAge: false
+#        ageWhenClaimed: true
+    puppies:
+        untamed: false
+#        dontAge: false
+#        ageWhenClaimed: true
 unclaimWith:
     cats: 350
     dogs: 287
+
+avoidbugs: false
 
 ##
 # Economy section.
@@ -16,6 +24,11 @@ costs:
     ##
     # Cost to unclaim a pet the user owns.
     unclaim:
+        cats: 0
+        dogs: 0
+    ##
+    # Kickback to original owner when pet is adopted.
+    reimburse:
         cats: 0
         dogs: 0
     ##
