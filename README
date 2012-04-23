@@ -7,6 +7,9 @@ Permission nodes (with full .* support):
 
 adoptafuzz.commands.reload
 
+adoptafuzz.admin.ocelots: true
+adoptafuzz.admin.wolves: true
+
 adoptafuzz.ocelots.unclaim
 adoptafuzz.wolves.unclaim
 
@@ -27,12 +30,20 @@ Configuration file as it should be:
 ##
 # Global Configurations.
 
-untamedSpawns:
-    kittens: false
-    puppies: false
+spawns:
+    kittens:
+        untamed: false
+#        dontAge: false
+#        ageWhenClaimed: true
+    puppies:
+        untamed: false
+#        dontAge: false
+#        ageWhenClaimed: true
 unclaimWith:
     cats: 350
     dogs: 287
+
+avoidbugs: false
 
 ##
 # Economy section.
@@ -45,6 +56,11 @@ costs:
         cats: 0
         dogs: 0
     ##
+    # Kickback to original owner when pet is adopted.
+    reimburse:
+        cats: 0
+        dogs: 0
+    ##
     # Cost to adopt a previously owned pet.
     adopt:
         ocelots: 0
@@ -54,4 +70,3 @@ costs:
     tame:
         ocelots: 0
         wolves: 0
-
